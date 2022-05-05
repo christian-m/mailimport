@@ -1,0 +1,18 @@
+image: gradle:6.8.2-jdk11
+
+pipelines:
+  default:
+    - step:
+        name: Security Scan
+        script:
+          # Run a security scan for sensitive data.
+          # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+          - pipe: atlassian/git-secrets-scan:0.6.1
+    - step:
+        name: Build and Test
+        caches:
+          - gradle
+        script:
+          - gradle build
+        after-script:
+          - pipe: atlassian/checkstyle-report:0.2.0

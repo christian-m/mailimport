@@ -1,0 +1,70 @@
+spring:
+  main:
+    banner-mode: console
+  application:
+    name: mailimport
+
+  datasource:
+  # Datasource settings must be provided by CLI-Parameter or environment variables
+  # url:
+  # username:
+  # password:
+  #driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+
+management:
+  # server:
+  # address: localhost
+  # port: 8081
+  endpoint:
+    shutdown.enabled: false
+  endpoints:
+    web.exposure.include: '*'
+    jmx.exposure.include: '*'
+  info:
+    git:
+      mode: full
+  metrics:
+    export:
+      cloudwatch:
+        namespace: prod-mailimport
+        enabled: true
+
+cloud:
+  aws:
+    # aws credentials and default region need to be configured by CLI-parameter or environment variables
+    # credentials:
+    # ENV: CLOUD_AWS_CREDENTIALS_PROFILE-NAME
+    # profile-name:
+    # access-key:
+    # secret-key:
+    region:
+      # ENV: CLOUD_AWS_REGION_STATIC
+      # static: eu-central-1
+      auto: false
+    stack:
+      auto: false # Automatic stack detection
+
+configuration:
+  s3:
+    bucket-name: prod-mailimport.matzat.cloud
+    path-prefix:
+      success: '/success/'
+      error: '/error/'
+  sqs:
+    success:
+      queue-name: prod_mailimport_success
+      dl-queue-name: prod_mailimport_success_dl
+    error:
+      queue-name: prod_mailimport_error
+      dl-queue-name: prod_mailimport_error_dl
+  dynamodb:
+    endpoint: https://dynamodb.eu-central-1.amazonaws.com
+    table-name: prod_mailimport_message_locks
+
+logging:
+  level:
+    com.amazonaws:
+      util.EC2MetadataUtils: error
+      internal.InstanceMetadataServiceResourceFetcher: error

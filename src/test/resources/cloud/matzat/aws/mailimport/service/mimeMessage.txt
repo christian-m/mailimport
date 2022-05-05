@@ -1,0 +1,56 @@
+Return-Path: <01020177a16827a6-ef3399ae-324a-448d-9bba-e83a94a35e4a-000000@eu-west-1.amazonses.com>
+Received: from a1-39.smtp-out.eu-west-1.amazonses.com (a1-39.smtp-out.eu-west-1.amazonses.com [54.240.1.39])
+ by inbound-smtp.eu-west-1.amazonaws.com with SMTP id ugbuv6aqo775g1ir5bn2s2sjh5k263deispa5701
+ for noone@nowhere.com;
+ Sun, 14 Feb 2021 16:38:14 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of eu-west-1.amazonses.com designates 54.240.1.39 as permitted sender) client-ip=54.240.1.39; envelope-from=01020177a16827a6-ef3399ae-324a-448d-9bba-e83a94a35e4a-000000@eu-west-1.amazonses.com; helo=a1-39.smtp-out.eu-west-1.amazonses.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of eu-west-1.amazonses.com designates 54.240.1.39 as permitted sender) client-ip=54.240.1.39; envelope-from=01020177a16827a6-ef3399ae-324a-448d-9bba-e83a94a35e4a-000000@eu-west-1.amazonses.com; helo=a1-39.smtp-out.eu-west-1.amazonses.com;
+ dkim=pass header.i=@amazon.com;
+ dkim=pass header.i=@amazonses.com;
+ dmarc=pass header.from=amazon.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFVGNpRzRWNkxCNnl5WDd1d1lWRE9RZHBFSE5sbG1IMnd0OSswMUVIbkNFNGVVVlArQjZtT2I0YWpMcmh1MnQ5TmFxU0VoNW9rVG43dTQxVm0wdFpEejM2djNJL0Z4dVBmYWYwZ0FNNEk3a2xsZjYzcFNMdTQvS012akpiMVRsN3YwazVjRVpyWE1XY1hDM3pLTFJINVNuVkdndGFqcThwbk5kQ0laM1JCcHFxN21xTzdxYllkMGc4cVVYdlB1QnEyUkJ4dERoak9sMHhvL3N1WVZWcE5XZkgxV3RHQ1pWMGJMVnFPVG9QSm8xYzdkSHE4clgrWjdqZjdHcTc1NW5PYmtqbE83RFdsUGlWQ01NUDlrbmY3b3ZodmJTOFhPTDRIdU51NENpb2lzb0pweEwyWDdTSkhsTXFNMXlkSElicnA0bGFMQU54WEZrcStvVnVQVlE5aS8zeTI1R2NyQmZsRUQvSlBZdTh6OWM4M1VJcitxdEdJblhtNU0yNUVBNDZBPQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=r5MfKY18dg8DNyyxKnK3G5bUgz5GPxo6jfHSi9x0/1bVFM3mrXERbJojUjM5MejjfbPmZVuc3A9UotgU+67JnrrbC5zzoVsn4tGCspXhvyApV4Q/MdZ+69o7mq1UGp/6D9hEplmuM7mChkRmEJU1tsX13xlRHgCFNLD1oczBOos=; c=relaxed/simple; s=shh3fegwg5fppqsuzphvschd53n6ihuv; d=amazonses.com; t=1613320694; v=1; bh=ZIsHn37DqtEOp/5xyBrr/9kXzXRGhJM26dabqYnOiIk=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ibpnrwgrbweb7fyixm4z35es6apvuedc; d=amazon.com; t=1613320693;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding;
+	bh=ZIsHn37DqtEOp/5xyBrr/9kXzXRGhJM26dabqYnOiIk=;
+	b=hEru5RgTm0sjNxgqmj9LG/8KBK4B88HJGfA0N/fWaW98lc09U3lnVKxjjE4rniwH
+	3o0V+Zb1jIKU0P5ugxioXzDBpJXFSdzAPXj2Cpn75rU7Rf/WXTbCDrXJF8iFAQhtdPF
+	Lt5gh+Cg9tqdvuw80NwxHqmoE8p9yKEhbvFu156E=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=shh3fegwg5fppqsuzphvschd53n6ihuv; d=amazonses.com; t=1613320693;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+	bh=ZIsHn37DqtEOp/5xyBrr/9kXzXRGhJM26dabqYnOiIk=;
+	b=CD+khq65CsopoHqsamjFU2YST9UNqAyncDGj4ZWiBMTD2UeLPB9nSM8bNwA4GQD3
+	Zy7YWcxvwstggPeDgLJ35TTeECDWsqHIJWtJvaBdNxiAf2F2UfCyy81iobQLyW1VSSm
+	ZTXS25sFd/wLX+G7yrFAWiUhZB2+sRiXl2FGqP9Q=
+Date: Sun, 14 Feb 2021 16:38:13 +0000 (UTC)
+From: Amazon Web Services <no-reply-aws@amazon.com>
+To: noone@nowhere.com
+Message-ID: <01020177a16827a6-ef3399ae-324a-448d-9bba-e83a94a35e4a-000000@eu-west-1.amazonses.com>
+Subject: =?UTF-8?Q?Amazon_Web_Services_=E2=80=93_Email_Address_Verif?=
+ =?UTF-8?Q?ication_Request_in_region_Europe_(Ireland)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-SES-Outgoing: 2021.02.14-54.240.1.39
+Feedback-ID: 1.eu-west-1.UIAUrMfbpGrxavqnRE0yoZrAUBI9C7GRNUx/kUDo6B4=:AmazonSES
+
+Dear Amazon Web Services Customer,
+
+We have received a request to authorize this email address for use with Amazon SES and Amazon Pinpoint in region Europe (Ireland). If you requested this verification, please go to the following URL to confirm that you are authorized to use this email address:
+
+https://email-verification.eu-west-1.amazonaws.com/
+
+Your request will not be processed unless you confirm the address using this URL. This link expires 24 hours after your original verification request.
+
+If you did NOT request to verify this email address, do not click on the link. Please note that many times, the situation isn't a phishing attempt, but either a misunderstanding of how to use our service, or someone setting up email-sending capabilities on your behalf as part of a legitimate service, but without having fully communicated the procedure first. If you are still concerned, please forward this notification to aws-email-domain-verification@amazon.com and let us know in the forward that you did not request the verification.
+
+To learn more about sending email from Amazon Web Services, please refer to the Amazon SES Developer Guide at http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html and Amazon Pinpoint Developer Guide at http://docs.aws.amazon.com/pinpoint/latest/userguide/welcome.html.
+
+Sincerely,
+
+The Amazon Web Services Team.

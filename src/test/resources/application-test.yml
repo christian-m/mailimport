@@ -1,0 +1,40 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  autoconfigure:
+    exclude:
+      - io.awspring.cloud.autoconfigure.context.ContextResourceLoaderAutoConfiguration
+  datasource:
+    # H2 settings
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testDb;DB_CLOSE_DELAY=-1
+  jpa:
+    hibernate.ddl-auto: create-drop
+  data:
+    dynamodb:
+      table-name: test_sqs_message_locks
+      entity2ddl.auto: create
+
+management:
+  metrics:
+    export:
+      cloudwatch:
+        enabled: false
+
+cloud:
+  aws:
+    credentials:
+      access-key: ACCESS_KEY
+      secret-key: SECRET_KEY
+    region:
+      static: eu-central-1
+      auto: false
+
+configuration:
+  s3:
+    endpoint: http://localhost
+    bucket-name: test-bucket
+    path-prefix:
+      # Path-style syntax not supported by s3mock
+      success: success-
+      error: error-

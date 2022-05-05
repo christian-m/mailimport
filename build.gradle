@@ -1,0 +1,99 @@
+buildscript {
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'java'
+    id "io.freefair.lombok" version "5.1.1"
+    id "com.gorylenko.gradle-git-properties" version "2.2.4"
+}
+
+ext {
+    set('springCloudVersion', "${springCloudVersion}")
+}
+
+apply plugin: "io.spring.dependency-management"
+
+group = 'cloud.matzat.aws'
+version = '1.0.0-SNAPSHOT'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url = uri("https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/release")
+    }
+    flatDir {
+        dirs 'src/test/lib'
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "io.awspring.cloud:spring-cloud-aws-dependencies:${springCloudAWSVersion}"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // AWS
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws'
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws-messaging'
+
+    // DB
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.github.derjust:spring-data-dynamodb:5.1.0'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+    implementation 'org.apache.commons:commons-email:1.5'
+
+    implementation 'io.micrometer:micrometer-registry-cloudwatch'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'io.findify:s3mock_2.13:0.2.6'
+    testImplementation 'com.amazonaws:DynamoDBLocal:1.11.0.1'
+    testImplementation name: 'sqlite4java-1.0.392'
+    testImplementation 'com.h2database:h2:1.4.200'
+}
+
+java {
+    toolchain {
+        vendor = JvmVendorSpec.ADOPTOPENJDK
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+gitProperties {
+    keys = ['git.branch', 'git.commit.id', 'git.commit.time']
+}
+
+springBoot {
+    buildInfo()
+}
+
+bootBuildImage {
+    imageName = "300401031624.dkr.ecr.eu-central-1.amazonaws.com/${project.name}"
+}
+
+test {
+    useJUnitPlatform()
+}

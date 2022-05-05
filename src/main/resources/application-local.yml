@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mailimport
+    username: mailimport
+    password: mailimport
+
+management:
+  # server:
+  # address: localhost
+  # port: 8081
+  endpoint:
+    shutdown.enabled: true
+  endpoints:
+    web.exposure.include: '*'
+    jmx.exposure.include: '*'
+
+cloud:
+  aws:
+    # aws credentials and default region need to be configured by CLI-parameter or environment variables
+    # credentials:
+    # ENV: CLOUD_AWS_CREDENTIALS_PROFILE-NAME
+    # profile-name:
+    # access-key:
+    # secret-key:
+    region:
+      # ENV: CLOUD_AWS_REGION_STATIC
+      # static: eu-central-1
+      auto: false
+    stack:
+      auto: false # Automatic stack detection
+
+configuration:
+  s3:
+    bucket-name: dev-mailimport.matzat.cloud
+  sqs:
+    success:
+      queue-name: dev_mailimport_success
+      dl-queue-name: dev_mailimport_success_dl
+    error:
+      queue-name: dev_mailimport_error
+      dl-queue-name: dev_mailimport_error_dl
+  dynamodb:
+    table-name: dev_mailimport_message_locks
+
+logging:
+  level:
+    org.hibernate.SQL: debug

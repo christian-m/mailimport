@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:14.2
+    container_name: postgres-mailimport
+    environment:
+      - "POSTGRES_PASSWORD=mailimport"
+      - "POSTGRES_USER=mailimport"
+      - "POSTGRES_DB=mailimport"
+    volumes:
+      - ./volumes/postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - dev_net
+
+networks:
+  dev_net:
+    driver: bridge
+

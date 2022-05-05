@@ -1,0 +1,12 @@
+{
+  "Type" : "Notification",
+  "MessageId" : "905c2cd1-956a-5963-8654-7476a5075e41",
+  "TopicArn" : "arn:aws:sns:eu-west-1:000000000000:ses_success",
+  "Subject" : "Amazon SES Email Receipt Notification",
+  "Message" : "{}",
+  "Timestamp" : "2021-02-17T14:54:37.716Z",
+  "SignatureVersion" : "1",
+  "Signature" : "AlOZul8vY7KqVoz0V1gVKvBtxZi781P4vhTTj2gMSHHSKmYHxp43pIlB9Xp1QCKvISC2J1UnbBiiQaGlI9ZkEbCJFuf74cjZy2jfqDP7HLtkx8aYLGvuXwT/MVybMzEur8Gcnkktu4u+ABw8p/YbS+fBe4rZHY3M+yhgcG6ShD63jEtH3mAgM0OV+TSsMmnX0IvDfB6Sm1Rzno/tcOseGkoOHT1XNBkTHlQWT0eLVIeq8spsG8HuuJdq/+DnB18JCWQA006vm4+7fREmlYv1Wir5jeFXQD9fkN328o5bNhJoBXPebWtKtExOHOwAz32Q4aRuHYm3lftHQJ8SYrIY2w==",
+  "SigningCertURL" : "https://sns.eu-west-1.amazonaws.com/SimpleNotificationService-010a507c1833636cd94bdb98bd93083a.pem",
+  "UnsubscribeURL" : "https://sns.eu-west-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:eu-west-1:000000000000:ses_success:9584f5ae-b7ee-46bf-bba7-e0a3bd0ef1df"
+}
