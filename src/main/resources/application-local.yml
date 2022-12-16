@@ -13,7 +13,10 @@ management:
   endpoints:
     web.exposure.include: '*'
     jmx.exposure.include: '*'
-
+  metrics:
+    export:
+      cloudwatch:
+        enabled: false
 cloud:
   aws:
     # aws credentials and default region need to be configured by CLI-parameter or environment variables
