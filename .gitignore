@@ -10,3 +10,5 @@ build
 .gradle
 out
 volumes/postgres/data/*
+volumes/oracle/data/*
+volumes/oracle/scripts/*
