@@ -3,9 +3,8 @@ management:
   # address: localhost
   # port: 8081
   endpoint:
-    shutdown.enabled: true
+    shutdown.enabled: false
   endpoints:
-    web.exposure.include: '*'
     jmx.exposure.include: '*'
   metrics:
     export:
