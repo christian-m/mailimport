@@ -13,5 +13,4 @@ See [function diagram](src/site/doc/AWS-SES.drawio.pdf)
 
 ## Webfrontend
 There is a simple web frontend to view the mails in the S3 Bucket
-Es ist ein einfaches Webfrontend enthalten, um die Inhalte des S3-Buckets anzuzeigen.
 
