@@ -14,20 +14,6 @@ services:
       - 5432:5432
     networks:
       - dev_net
-  oracle:
-    image: eu.gcr.io/cmatzat/oracle-database:18.4.0-xe
-    container_name: oracle-mailimport
-    environment:
-      - "ORACLE_PWD=mailimport"
-      - "ORACLE_CHARACTERSET=AL32UTF8"
-      - "TZ=Europe/Berlin"
-    volumes:
-      - ./volumes/oracle/oradata:/opt/oracle/oradata
-      - ./volumes/oracle/scripts:/opt/oracle/scripts
-    ports:
-      - 1521:1521
-    networks:
-      - dev_net
 
 networks:
   dev_net:
