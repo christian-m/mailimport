@@ -1,0 +1,23 @@
+name: CI build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java and Gradle
+        uses: ./.github/actions/setup-java-and-gradle
+      - name: Build with Gradle
+        run: ./gradlew check
+      - name: publish test report
+        uses: mikepenz/action-junit-report@v5
+        if: always()
+        with:
+          report_paths: "**/build/test-results/test/TEST-*.xml"

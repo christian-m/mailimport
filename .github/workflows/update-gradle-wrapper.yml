@@ -1,0 +1,25 @@
+name: Update Gradle Wrapper
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 8 o'clock on mondays
+    - cron: "0 8 * * 1"
+
+jobs:
+  update-gradle-wrapper:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java and Gradle
+        uses: ./.github/actions/setup-java-and-gradle
+
+      - name: Update Gradle Wrapper
+        uses: gradle-update/update-gradle-wrapper-action@v2
+        with:
+          pr-title-template: 'Bump Gradle Wrapper from %sourceVersion% to %targetVersion%'
