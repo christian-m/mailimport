@@ -7,8 +7,8 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'java'
-    id "io.freefair.lombok" version "5.1.1"
-    id "com.gorylenko.gradle-git-properties" version "2.2.4"
+    id "io.freefair.lombok" version "8.12"
+    id "com.gorylenko.gradle-git-properties" version "2.4.2"
 }
 
 ext {
@@ -29,12 +29,6 @@ configurations {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url = uri("https://s3.eu-central-1.amazonaws.com/dynamodb-local-frankfurt/release")
-    }
-    flatDir {
-        dirs 'src/test/lib'
-    }
 }
 
 dependencyManagement {
@@ -70,15 +64,13 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'io.findify:s3mock_2.13:0.2.6'
-    testImplementation 'com.amazonaws:DynamoDBLocal:1.11.0.1'
-    testImplementation name: 'sqlite4java-1.0.392'
-    testImplementation 'com.h2database:h2:1.4.200'
+    testImplementation 'com.amazonaws:DynamoDBLocal:1.24.0'
+    testImplementation 'com.h2database:h2:2.2.220'
 }
 
 java {
     toolchain {
-        vendor = JvmVendorSpec.ADOPTOPENJDK
-        languageVersion = JavaLanguageVersion.of(11)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
